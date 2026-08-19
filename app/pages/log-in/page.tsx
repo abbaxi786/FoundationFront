@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import axios from "axios";
 
 interface LogInForm {
   email: string;
@@ -22,8 +23,16 @@ function LogIn() {
     }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+     try{
+      const value = await axios.post(`${process.env.BACKEND_URL}/api/log-in`)
+      console.log("The form result: "+JSON.stringify(value))
+    }catch(error){
+      console.log(error)
+    }
+
+  
 
     console.log("The form data:", form);
   }

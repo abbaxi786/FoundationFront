@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import axios from "axios";
 
 interface SignUpForm {
   username: string;
@@ -24,8 +25,14 @@ function SignUp() {
     }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    try{
+      const value = await axios.post(`${process.env.BACKEND_URL}/api/sign-up`)
+      console.log("The form result: "+JSON.stringify(value))
+    }catch(error){
+      console.log(error)
+    }
 
     console.log("Sign up form:", form);
   }
