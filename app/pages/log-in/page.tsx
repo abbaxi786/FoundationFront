@@ -34,7 +34,6 @@ function LogIn() {
 
   
 
-    console.log("The form data:", form);
   }
 
   return (
